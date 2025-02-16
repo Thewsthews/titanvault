@@ -1,4 +1,4 @@
-use ethers::signers::{LocalWallet, MnemonicBuilder};
+use ethers::signers::MnemonicBuilder;
 use serde::Serialize;
 
 #[derive(Serialize)]
@@ -15,6 +15,6 @@ pub fn generate_wallet() -> WalletResponse{
     WalletResponse{
         address: wallet.address().to_string(),
         private_key: wallet.private_key().unwrap().to_string(),
-        mnemonic: mnemonic.phrase(),
+        mnemonic: mnemonic.to_string(),
     }
 }

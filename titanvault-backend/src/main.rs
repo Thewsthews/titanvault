@@ -1,8 +1,9 @@
-use axum::{routing::post, Router};
 use std::net::SocketAddr;
 use tokio;
 
-mod routes
+mod routes;
+mod wallet;
+pub mod handlers;
 
 #[tokio::main]
 async fn main(){
