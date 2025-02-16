@@ -1,5 +1,6 @@
 use std::net::SocketAddr;
 use tokio;
+use titanvault_backend::routes::create_router;
 
 mod routes;
 mod wallet;

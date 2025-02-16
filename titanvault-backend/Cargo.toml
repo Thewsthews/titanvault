@@ -11,3 +11,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 rust-crypto = "0.2.36"
 dotenv = "0.15"
+
+[lib]
+name = "titanvault_backend"
+path = "src/lib.rust"
