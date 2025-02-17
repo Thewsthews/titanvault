@@ -1,4 +1,4 @@
-use ethers::{signers::{LocalWallet, MnemonicBuilder, Signer}, types::{transaction::eip2718::TypedTransaction, Transaction}};
+use ethers::{signers::{LocalWallet, MnemonicBuilder, Signer}, types::Transaction};
 use std::str::FromStr;
 use serde::Serialize;
 
@@ -12,7 +12,7 @@ pub struct WalletResponse{
 
 pub fn generate_wallet() -> WalletResponse{
     let mnemonic = MnemonicBuilder::default().word_count(12).build().unwrap();
-    let wallet = MnemonicBuilder::default().phrase(&mnemonic).build().unwrap();
+    let wallet = MnemonicBuilder::default().build().unwrap();
 
     WalletResponse{
         address: wallet.address().to_string(),
@@ -23,6 +23,6 @@ pub fn generate_wallet() -> WalletResponse{
 
 pub async fn sign_transaction(private_key: &str, transaction: &Transaction) -> Result<String, Box<dyn std::error::Error>> {
     let wallet = LocalWallet::from_str(private_key)?;
-    let signed_tx = wallet.sign_transaction(&TypedTransaction).await?;
+    let signed_tx = wallet.sign_transaction(transaction).await?;
     Ok(signed_tx.to_string())
 }
