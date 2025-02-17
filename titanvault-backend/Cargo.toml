@@ -14,7 +14,7 @@ dotenv = "0.15"
 
 [lib]
 name = "titanvault_backend"
-path = "src/lib.rust"
+path = "src/lib.rs"
 
 [[bin]]
 name = "server"
