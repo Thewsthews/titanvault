@@ -16,13 +16,15 @@ pub fn generate_wallet() -> WalletResponse{
 
     WalletResponse{
         address: wallet.address().to_string(),
-        private_key: wallet.to_string(),
-        mnemonic: mnemonic.to_string(),
+        private_key: format!("{:?}", wallet),
+        mnemonic: format!("{:?}", mnemonic),
     }
 }
 
+
 pub async fn sign_transaction(private_key: &str, transaction: &Transaction) -> Result<String, Box<dyn std::error::Error>> {
     let wallet = LocalWallet::from_str(private_key)?;
-    let signed_tx = wallet.sign_transaction(transaction).await?;
+    let typed_tx: TypedTransaction = transaction.clone().into();
+    let signed_tx = wallet.sign_transaction(&typed_tx).await?;
     Ok(signed_tx.to_string())
 }
