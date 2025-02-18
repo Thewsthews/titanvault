@@ -47,7 +47,7 @@ pub fn generate_k256_key()->(String, String){
     let signing_key = SigningKey::random(&mut OsRng);
     let verifying_key = VerifyingKey::from(&signing_key);
     (
-        hex::encode(signing_key.to_bytes().as_ref()),
+        hex::encode(signing_key.to_bytes().as_ref::<[u8; 32]>()),
         hex::encode(verifying_key.to_sec1_bytes().as_ref()),
     )
 }
