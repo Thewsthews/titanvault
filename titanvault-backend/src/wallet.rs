@@ -24,7 +24,7 @@ pub fn generate_wallet() -> WalletResponse{
 
 pub async fn sign_transaction(private_key: &str, transaction: &Transaction) -> Result<String, Box<dyn std::error::Error>> {
     let wallet = LocalWallet::from_str(private_key)?;
-    let typed_tx: TypedTransaction = transaction.clone().into();
+    let typed_tx: Transaction = transaction.clone().into();
     let signed_tx = wallet.sign_transaction(&typed_tx).await?;
     Ok(signed_tx.to_string())
 }
