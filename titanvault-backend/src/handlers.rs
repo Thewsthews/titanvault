@@ -1,7 +1,7 @@
 use axum::Json;
 use serde::{Deserialize, Serialize};
 // use crate::wallet::Wallet; // Commented out as it is not used
-use ethers::types::Transaction;
+use ethers::types::{transaction::eip2718::TypedTransaction, Transaction};
 
 use crate::wallet;
 
@@ -35,6 +35,7 @@ struct SignResponse{
 
 pub async fn sign_transaction(Json(payload): Json<SignRequest>) -> Json<SignResponse> {
     let transaction: Transaction = serde_json::from_str(&payload.transaction_data).expect("Invalid transaction data");
-    let signed_transaction = wallet::sign_transaction(&payload.private_key, &transaction).await.expect("Failed to sign transaction");
+    let typed_transaction: TypedTransaction = TypedTransaction::Legacy(transaction);
+    let signed_transaction = wallet::sign_transaction(&payload.private_key, &typed_transaction).await.expect("Failed to sign transaction");
     Json(SignResponse{signed_transaction})
 }
