@@ -30,7 +30,9 @@ rustwallet/
 │   ├── src/
 │   │   ├── main.rs
 │   │   ├── routes.rs
+|   |   ├── lib.rs
 │   │   ├── handlers.rs
+|   |   ├── wallet.rs
 │   ├── Cargo.toml
 │
 │── frontend/ (Next.js + TypeScript)
@@ -52,7 +54,7 @@ cd titanvault
 
 ### 2️⃣ Setup the Backend (Rust)
 ```sh
-cd backend
+cd titanvault-backend
 cargo run
 ```
 
