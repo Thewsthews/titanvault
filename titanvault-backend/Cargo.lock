@@ -3307,6 +3307,7 @@ dependencies = [
  "axum",
  "dotenv",
  "ethers",
+ "k256",
  "rust-crypto",
  "serde",
  "serde_json",

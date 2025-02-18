@@ -24,7 +24,7 @@ pub fn generate_wallet() -> WalletResponse {
     WalletResponse {
         address: wallet.address().to_string(),
         private_key: wallet.signer().to_string(),
-        mnemonic: mnemonic.phrase().to_string(),
+        mnemonic: mnemonic.to_string(),
     }
 }
 
