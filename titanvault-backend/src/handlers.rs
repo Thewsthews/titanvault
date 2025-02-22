@@ -34,9 +34,8 @@ struct SignResponse{
 }
 
 pub async fn sign_transaction(Json(payload): Json<SignRequest>) -> Json<SignResponse> {
-    let transaction: Transaction = serde_json::from_str(&payload.transaction_data).expect("Invalid transaction data");
-    let transaction_request: TransactionRequest = transaction.into();
-    let typed_transaction: TypedTransaction = TypedTransaction::Legacy(transaction_request);
+    let transaction_request: TransactionRequest = serde_json::from_str(&payload.transaction_data).expect("Failed to parse transaction data");
+    let typed_transaction: TypedTransaction = TypedTransaction::from(transaction_request);
     let signed_transaction = wallet::sign_transaction(&payload.private_key, &typed_transaction).await.expect("Failed to sign transaction");
     Json(SignResponse{signed_transaction})
 }
