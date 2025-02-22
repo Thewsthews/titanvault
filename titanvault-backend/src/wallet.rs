@@ -1,5 +1,5 @@
 use ethers::{
-    signers::{LocalWallet, MnemonicBuilder},
+    signers::{LocalWallet, MnemonicBuilder, Signer},
     types::transaction::eip2718::TypedTransaction, utils::hex::hex,
 };
 use k256::{ecdsa::{signature::Signer as k256Signer, SigningKey, VerifyingKey}, elliptic_curve::rand_core};
@@ -30,7 +30,7 @@ pub fn generate_wallet() -> WalletResponse{
     WalletResponse{
         address: wallet.address().to_string(),
         private_key: wallet.private_key().unwrap().to_string(),
-        mnemonic: mnemonic.phrase(),
+        mnemonic: mnemonic.to_string(),
     }
 }
 pub async fn sign_transaction(
@@ -38,7 +38,7 @@ pub async fn sign_transaction(
     transaction: &TypedTransaction,
 )-> Result<String, Box<dyn Error>>{
     let wallet = LocalWallet::from_str(private_key)?;
-    let signature = wallet.sign(transaction).await?;
+    let signature = wallet.sign_transaction(transaction).await?;
     Ok(signature.to_string())
 }
 
@@ -47,14 +47,15 @@ pub fn generate_k256_key()->(String, String){
     let signing_key = SigningKey::random(&mut OsRng);
     let verifying_key = VerifyingKey::from(&signing_key);
     (
-        hex::encode (signing_key.to_bytes().as_ref::<[u8; 32]>()),
         hex::encode(verifying_key.to_sec1_bytes().as_ref()),
+        hex::encode(signing_key.to_bytes().as_ref()),
     )
 }
 
 ///This is the part that signs a message using k256
 pub fn sign_message_k256(private_key: &str, message: &[u8]) -> Result<String, Box<dyn Error>>{
-    let signing_key = SigningKey::from_bytes(&hex::decode(private_key)?)?;
+    let decoded_key = hex::decode(private_key)?;
+    let signing_key = SigningKey::from_bytes(&GenericArray::clone_from_slice(&decoded_key))?;
     let signature = signing_key.sign(message);
     Ok(hex::encode(signature.to_bytes().as_ref()))
 }
