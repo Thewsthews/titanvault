@@ -2,7 +2,7 @@ use ethers::{
     signers::{LocalWallet, MnemonicBuilder, Signer},
     types::transaction::eip2718::TypedTransaction, utils::hex::hex,
 };
-use k256::{ecdsa::{signature::Signer as k256Signer, SigningKey, VerifyingKey}, elliptic_curve::rand_core};
+use k256::{ecdsa::{signature::Signer as k256Signer, SigningKey, VerifyingKey}, elliptic_curve::{generic_array::GenericArray, rand_core}};
 use rand_core::OsRng;
 use std::{str::FromStr, error::Error};
 use serde::Serialize;
@@ -30,7 +30,7 @@ pub fn generate_wallet() -> WalletResponse{
     WalletResponse{
         address: wallet.address().to_string(),
         private_key: wallet.private_key().unwrap().to_string(),
-        mnemonic: mnemonic.to_string(),
+        mnemonic: format!("{:?}", mnemonic),
     }
 }
 pub async fn sign_transaction(
