@@ -19,7 +19,7 @@ pub fn generate_wallet() -> WalletResponse{
     //This is reponsible for generation of a mnemonic
     let mnemonic = MnemonicBuilder::default()
     .word_count(12)
-    .build()
+    .generate()
     .unwrap();
 
     //Derives a wallet from the mnemonic
