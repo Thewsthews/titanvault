@@ -1,7 +1,7 @@
 use axum::Json;
 use serde::{Deserialize, Serialize};
 // use crate::wallet::Wallet; // Commented out as it is not used
-use ethers::types::{transaction::eip2718::TypedTransaction, Transaction, TransactionRequest};
+use ethers::types::{transaction::eip2718::TypedTransaction, TransactionRequest};
 
 use crate::wallet;
 
