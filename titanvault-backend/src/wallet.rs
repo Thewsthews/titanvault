@@ -57,5 +57,5 @@ pub fn sign_message_k256(private_key: &str, message: &[u8]) -> Result<String, Bo
     let decoded_key = hex::decode(private_key)?;
     let signing_key = SigningKey::from_bytes(&GenericArray::clone_from_slice(&decoded_key))?;
     let signature: k256::ecdsa::Signature = signing_key.sign(message);
-    Ok(hex::encode(signature.to_bytes().as_ref()))
+    Ok(hex::encode(signature.to_bytes()))
 }
