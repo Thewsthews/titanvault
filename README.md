@@ -99,7 +99,7 @@ Response: {
 ## 🤝 Contributions
 Pull requests and contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md).
 
-## 🛡️ License
+## 👨🏾‍⚖️ License
 This project is licensed under the MIT License.
 
 ## 📢 Contact
