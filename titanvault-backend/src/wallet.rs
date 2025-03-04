@@ -24,7 +24,7 @@ pub fn generate_wallet() -> WalletResponse{
 
     //Derives a wallet from the mnemonic
     let wallet = mnemonic.clone()
-    .derive_wallet(None)
+    .build()
     .unwrap();
 
     WalletResponse{
@@ -48,7 +48,7 @@ pub fn generate_k256_key()->(String, String){
     let verifying_key = VerifyingKey::from(&signing_key);
     (
         hex::encode(verifying_key.to_sec1_bytes().as_ref()),
-        hex::encode(signing_key.to_bytes().as_ref()),
+        hex::encode::<[u8; 32]>(*signing_key.to_bytes().as_ref()),
     )
 }
 
