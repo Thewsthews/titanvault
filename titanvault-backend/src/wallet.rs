@@ -23,9 +23,7 @@ pub fn generate_wallet() -> WalletResponse{
     .unwrap();
 
     //Derives a wallet from the mnemonic
-    let wallet = mnemonic.clone()
-    .build()
-    .unwrap();
+    let wallet=mnemonic.clone().build().unwrap();
 
     WalletResponse{
         address: wallet.address().to_string(),
