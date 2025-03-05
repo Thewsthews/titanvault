@@ -1,0 +1,1 @@
+fn(Json<SignRequest>) -> impl Future<Output = Json<{type error}>> {handlers::sign_transaction}

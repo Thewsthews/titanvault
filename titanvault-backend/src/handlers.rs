@@ -1,20 +1,20 @@
 use axum::Json;
 use serde::{Deserialize, Serialize};
-// use crate::wallet::Wallet; // Commented out as it is not used
-use ethers::types::{transaction::eip2718::TypedTransaction, TransactionRequest};
+use alloy_core::primitives::TxEnvelope;
+use alloy_primitive::hex;
 
-use crate::wallet;
+use crate::wallet; //Created in the previous base
 
-#[derive(Serialize)]
-struct WalletResponse{
+#[derive(Deserialize)]
+struct WalletResponse {
     address: String,
     private_key: String,
     mnemonic: String,
 }
 
-pub async fn create_wallet() -> Json<WalletResponse>{
-    let wallet_data = wallet::generate_wallet();
-    Json(WalletResponse {
+pub async fn create_wallet() -> Json<WalletResponse> {
+    let wallet_date = wallet::generate_wallet();
+    Json(WalletResponse{
         address: wallet_data.address,
         private_key: wallet_data.private_key,
         mnemonic: wallet_data.mnemonic,
@@ -24,18 +24,22 @@ pub async fn create_wallet() -> Json<WalletResponse>{
 #[derive(Deserialize)]
 struct SignRequest{
     private_key: String,
-    transaction_data: String,
+    transaction_date: String,
 }
 
 #[derive(Serialize)]
-
-struct SignResponse{
+struct Signresponse{
     signed_transaction: String,
 }
 
-pub async fn sign_transaction(Json(payload): Json<SignRequest>) -> Json<SignResponse> {
-    let transaction_request: TransactionRequest = serde_json::from_str(&payload.transaction_data).expect("Failed to parse transaction data");
-    let typed_transaction: TypedTransaction = transaction_request.into();
-    let signed_transaction = wallet::sign_transaction(&payload.private_key, &typed_transaction).await.expect("Failed to sign transaction");
-    Json(SignResponse{signed_transaction})
+pub async fn sign_transaction(Json(payload): Json<SignRequest>) -> Json<SignResponse>{
+    // This part is responsible for the parsing of transaction data into a TxEnvelope
+    let tx_envelope: TxEnvelope = serde_json::from_str(&payload.transaction_data)
+    .expect("Failed to parse transaction data");
+
+    //Signs the transaction into the wallet module
+    let signed_transaction = wallet::sign_transaction(&payload.private_key, &tx_envelope)
+    .await.expect("Failed to sign transaction");
+Json(SignResponse{
+    signed_transaction,})
 }
