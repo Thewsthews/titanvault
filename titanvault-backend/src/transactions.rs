@@ -11,7 +11,7 @@ pub async fn sign_transaction(private_key: String, transaction_data: String)-> S
     //This part signs the transaction
     let signature = signer.sign_message(transaction_data.as_bytes())
     .await
-    .expect(msg: "Failed to sign transaction");
+    .expect("Failed to sign transaction");
 
     //Formats the signature as a hex string with 0x prefix
     format!("0x{}", hex::encode(signature.to_vec()))

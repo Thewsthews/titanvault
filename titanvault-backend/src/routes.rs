@@ -15,7 +15,7 @@ pub fn create_router() -> Router{
     .route("/sign", post(sign_transaction))
 }
 
-pub fn sign_transaction(
+pub async fn sign_transaction(
     axum::extract::Json(payload): axum::extract::Json<SignRequest>,
 ) -> Result<String, axum::http::StatusCode>{
     let signer = PrivateKeySigner::from_bytes(
