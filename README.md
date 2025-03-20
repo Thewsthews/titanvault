@@ -35,7 +35,7 @@ rustwallet/
 |   |   ├── wallet.rs
 │   ├── Cargo.toml
 │
-│── frontend/ (Next.js + TypeScript)
+│── frontend/ (Next.js + TypeScript) (YET TO BE IMPLEMENTED)
 │   ├── src/
 │   │   ├── components/
 │   │   ├── hooks/
