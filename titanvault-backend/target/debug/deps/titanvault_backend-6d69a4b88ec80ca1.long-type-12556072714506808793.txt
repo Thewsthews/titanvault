@@ -1,1 +1,0 @@
-fn(axum::Json<{type error}>) -> impl Future<Output = Result<axum::Json<{type error}>, StatusCode>> {handlers::sign_transaction}
