@@ -27,11 +27,17 @@ pub fn generate_wallet() -> WalletResponse {
     }
 }
 
+
 pub async fn sign_transaction(
     private_key: &str,
     transaction: &TxEnvelope,
-) -> Result<String, Box<dyn Error>> {
-    let wallet = LocalWallet::from_str(private_key)?;
+) -> Result<TxEnvelope, Box<dyn Error>> {
+    let private_key = private_key.trim_start_matches("0x");
+    if private_key.len() != 64 || !private_key.chars().all(|c| c.is_ascii_hexdigit()) {
+        return Err("Invalid private key format: must be 32-byte hex string".into());
+    }
+
+    let wallet = LocalWallet::from_str(&format!("0x{}", private_key))?;
     let signature = wallet.sign_transaction(transaction).await?;
-    Ok(format!("0x{}", hex::encode(signature.to_bytes())))
+    Ok(signature) 
 }

@@ -1,4 +1,4 @@
-use axum::{routing::post, Router, Json};
+use axum::{routing::post, Router};
 use serde::{Deserialize, Serialize};
 use crate::handlers::{create_wallet, sign_transaction};
 

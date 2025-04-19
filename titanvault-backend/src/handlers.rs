@@ -6,16 +6,13 @@ use crate::{wallet, transactions};
 #[derive(Serialize)]
 pub struct WalletResponse {
     address: String,
-    private_key: String,
-    mnemonic: String,
+    
 }
 
 pub async fn create_wallet() -> Json<WalletResponse> {
     let wallet_data = wallet::generate_wallet();
     Json(WalletResponse {
         address: wallet_data.address,
-        private_key: wallet_data.private_key,
-        mnemonic: wallet_data.mnemonic,
     })
 }
 
