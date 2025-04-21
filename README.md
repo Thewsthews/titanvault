@@ -3,7 +3,7 @@
 ## Overview
 TitanVault is a secure and efficient cryptocurrency wallet built using **Rust** for the backend and **Next.js (TypeScript)** for the frontend. It allows users to generate wallets, check balances, and send transactions securely on the Ethereum blockchain.
 
-## 🛠️ Tech Stack
+## Tech Stack
 ### **Backend (Rust)**
 - [Axum](https://github.com/tokio-rs/axum) - Web framework for Rust API
 - [Tokio](https://tokio.rs/) - Async runtime for Rust
