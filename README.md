@@ -45,7 +45,7 @@ rustwallet/
 │── README.md
 ```
 
-## 🚀 Getting Started
+## Getting Started
 ### 1️⃣ Clone the Repository
 ```sh
 git clone https://github.com/Thewsthews/titanvault.git
