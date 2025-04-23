@@ -17,7 +17,7 @@ TitanVault is a secure and efficient cryptocurrency wallet built using **Rust** 
 - [Zustand](https://github.com/pmndrs/zustand) - State management
 - [Tailwind CSS](https://tailwindcss.com/) - Styling framework
 
-## ⚙️ Features
+## Features
 - 🔐 **Create a new Ethereum wallet** with a 12-word mnemonic phrase
 - 💰 **Check wallet balance** in real-time
 - 💸 **Send transactions** securely using a private key
