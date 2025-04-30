@@ -68,7 +68,7 @@ npm run dev
 ### 4️⃣ Open in Browser
 Visit: [http://localhost:3000](http://localhost:3000)
 
-## 📜 API Endpoints
+## API Endpoints
 ### Create a New Wallet
 ```sh
 POST /create_wallet
