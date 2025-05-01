@@ -96,7 +96,7 @@ Response: {
 - Smart contract deployment
 - Encrypted private key storage
 
-## 🤝 Contributions
+## Contributions
 Pull requests and contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md).
 
 ## 👨🏾‍⚖️ License
