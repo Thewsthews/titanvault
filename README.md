@@ -102,7 +102,7 @@ Pull requests and contributions are welcome! Please follow the [contribution gui
 ## License
 This project is licensed under the MIT License.
 
-## 📢 Contact
+## Contact
 For questions or support, reach out to [M1](mailto:etiegni@gmail.com).
 
 ---
