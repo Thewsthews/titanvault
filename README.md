@@ -91,7 +91,7 @@ Response: {
 }
 ```
 
-## 🎯 Future Enhancements
+## Future Enhancements
 - Multi-chain support (Bitcoin, Solana, Polkadot)
 - Smart contract deployment
 - Encrypted private key storage
