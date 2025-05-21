@@ -3,7 +3,6 @@ use alloy_primitives::{Address, hex};
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 
-
 #[derive(Deserialize, Serialize)]
 pub struct TransactionRequest {
     pub to: String,          

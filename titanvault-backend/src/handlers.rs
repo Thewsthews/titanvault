@@ -6,7 +6,7 @@ use crate::{wallet, transactions};
 #[derive(Serialize)]
 pub struct WalletResponse {
     address: String,
-    
+    error: String,
 }
 
 pub async fn create_wallet() -> Json<WalletResponse> {
@@ -16,19 +16,25 @@ pub async fn create_wallet() -> Json<WalletResponse> {
     })
 }
 
-pub async fn sign_transaction(Json(payload): Json<routes::SignRequest>) -> Result<Json<routes::SignResponse>, axum::http::StatusCode> {
-    // Create TxEnvelope from TransactionRequest
-    let tx_envelope: TxEnvelope = transactions::create_transaction(payload.transaction_data)
-        .map_err(|_| axum::http::StatusCode::BAD_REQUEST)?;
-    
-    // Sign the transaction
+pub async fn sign_transaction(Json(payload): Json<routes::SignRequest>) -> Result<Json<routes::SignResponse>, (StatusCode, Json<ErrorResponse>)> {
+    let tx_envelope = transactions::create_transaction(payload.transaction_data)
+        .map_err(|e| (
+            StatusCode::BAD_REQUEST,
+            Json(ErrorResponse { error: e.to_string() })
+        ))?;
+
     let signed_tx = wallet::sign_transaction(&payload.private_key, &tx_envelope)
         .await
-        .map_err(|_| axum::http::StatusCode::INTERNAL_SERVER_ERROR)?;
-    
-    // Format the signed transaction
+        .map_err(|e| (
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Json(ErrorResponse { error: e.to_string() })
+        ))?;
+
     let formatted_tx = transactions::format_signed_transaction(signed_tx)
-        .map_err(|_| axum::http::StatusCode::INTERNAL_SERVER_ERROR)?;
+        .map_err(|e| (
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Json(ErrorResponse { error: e.to_string() })
+        ))?;
 
     Ok(Json(routes::SignResponse { signed_transaction: formatted_tx }))
 }
