@@ -1,9 +1,9 @@
 # TitanVault 
 
-## 🚀 Overview
+## Overview
 TitanVault is a secure and efficient cryptocurrency wallet built using **Rust** for the backend and **Next.js (TypeScript)** for the frontend. It allows users to generate wallets, check balances, and send transactions securely on the Ethereum blockchain.
 
-## 🛠️ Tech Stack
+## Tech Stack
 ### **Backend (Rust)**
 - [Axum](https://github.com/tokio-rs/axum) - Web framework for Rust API
 - [Tokio](https://tokio.rs/) - Async runtime for Rust
@@ -17,7 +17,7 @@ TitanVault is a secure and efficient cryptocurrency wallet built using **Rust** 
 - [Zustand](https://github.com/pmndrs/zustand) - State management
 - [Tailwind CSS](https://tailwindcss.com/) - Styling framework
 
-## ⚙️ Features
+## Features
 - 🔐 **Create a new Ethereum wallet** with a 12-word mnemonic phrase
 - 💰 **Check wallet balance** in real-time
 - 💸 **Send transactions** securely using a private key
@@ -45,7 +45,7 @@ rustwallet/
 │── README.md
 ```
 
-## 🚀 Getting Started
+## Getting Started
 ### 1️⃣ Clone the Repository
 ```sh
 git clone https://github.com/Thewsthews/titanvault.git
@@ -68,7 +68,7 @@ npm run dev
 ### 4️⃣ Open in Browser
 Visit: [http://localhost:3000](http://localhost:3000)
 
-## 📜 API Endpoints
+## API Endpoints
 ### Create a New Wallet
 ```sh
 POST /create_wallet
@@ -91,18 +91,18 @@ Response: {
 }
 ```
 
-## 🎯 Future Enhancements
+## Future Enhancements
 - Multi-chain support (Bitcoin, Solana, Polkadot)
 - Smart contract deployment
 - Encrypted private key storage
 
-## 🤝 Contributions
+## Contributions
 Pull requests and contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md).
 
-## 👨🏾‍⚖️ License
+## License
 This project is licensed under the MIT License.
 
-## 📢 Contact
+## Contact
 For questions or support, reach out to [M1](mailto:etiegni@gmail.com).
 
 ---
