@@ -23,7 +23,7 @@ TitanVault is a secure and efficient cryptocurrency wallet built using **Rust** 
 - 💸 **Send transactions** securely using a private key
 - 🛡️ **Secure private key management**
 
-## 🏗️ Project Structure
+## Project Structure
 ```
 rustwallet/
 │── backend/ (Rust API)
